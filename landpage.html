@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.min.css.map">
+    <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/all.min.css">
+    <title>Document</title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/f9c0f3458b.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        background-image: url(31NnfrsEplL._AC_.jpg);
+        /* width: 100%; */
+        overflow-x: hidden;
+    }
+
+    #logo{
+        margin-top: -11%;
+    }
+
+    #video {
+
+
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .header{
+        position: relative;
+    margin: -25% 0 ;
+    color: #fff;
+    text-shadow: 0 5px 20px #333;
+    }
+    .register{
+        background-color:#D95BA4;
+        color: white;
+        width: 10%;
+        height: 8vh;
+        margin: 27% 45%;
+        /* font-size:25px; */
+    }
+    #photo{
+        display: none;
+    }
+   #textsection1{
+    text-align: center;
+    margin-top:-10% ;
+    color: white;
+    font-size:4rem;
+   }
+   #section1{
+    margin: 0 1%;
+   }
+    /* #photo1{
+        display: flex;
+        justify-content: center;
+       margin-top: -13%; 
+    } */
+    @media  (max-width: 734px){
+#video {
+   display: none;
+}
+.register{
+    display: none;
+}
+
+
+};
+
+</style>
+
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown" style="justify-content:center">
+                <ul class="navbar-nav mt-1">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Preschool
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">kiddy planet </a></li>
+                            <li><a class="dropdown-item" href="#">Cut Kids</a></li>
+                            <li><a class="dropdown-item" href="#">Classy kids</a></li>
+                        </ul>
+                    </li>
+                    <a class="navbar-brand " href="#">
+                        <img src="logo.png" alt="Bootstrap" width="120" height="70" id="logo">
+                    </a>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Register</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link">|</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+
+    </nav>
+    <div id="video" >
+        <!-- loop :to make video run for infinity -->
+        <video autoplay loop muted >
+            <source src="video.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div>
+        <img src="RSVL-9-2019-MKTG-080_web.png" id="photo">
+    </div>
+    <div>
+        <!-- fs:fontsize && text-center:to make text in center page -->
+        <h1 class=" fs-3 text-center header ">A HEARTFELT DEDICATION TO <br>  NURTURING INTELLIGENCE.</h1>
+    </div>
+
+
+    <div>
+    <button type="button" class="btn register">Register</button>
+    </div>
+
+    <div id="textsection1">
+        <p>Our Services<p>    
+            </div>
+
+    <div id="section1" >
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card h-100">
+                <img src="109-1090866_special-project-preschool-icon-png-transparent-removebg-preview (1).png" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text" style="font-size: 3rem;text-align: center;">Pre-Schools</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    
+    <script src="bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="bootstrap-5.2.2-dist/js/all.min.js"></script>
+</body>
+
+</html>
+
+<!-- <div id="photo1">
+    <img src="Untitled-removebg-preview (1).png" style="width: 40%;">   
+   </div> -->
