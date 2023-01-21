@@ -1,8 +1,10 @@
 body {
-    background-image: url(31NnfrsEplL._AC_.jpg);
+    background-image: url(../31NnfrsEplL._AC_.jpg);
     /* width: 100%; */
     overflow-x: hidden;
+  
 }
+
 
 #logo{
     margin-top: -11%;
@@ -22,7 +24,7 @@ color: #fff;
 text-shadow: 0 5px 20px #333;
 }
 .register{
-    background-color:#D95BA4;
+    background-color:#F48257;
     color: white;
     width: 10%;
     height: 8vh;
@@ -74,7 +76,7 @@ display: none;
 }
 
 .section3{
-    background-image: url(swash_yellow_both.png);
+    background-image: url(../swash_yellow_both.png);
 }
 .peaceofmind{
     padding-top: 4%;
@@ -83,7 +85,7 @@ display: none;
 
 
 .buttonyellow{
-    background: url(button_pink.png) no-repeat left center transparent;
+    background: url(../button_pink.png) no-repeat left center transparent;
     background-size: 100% 63%;
     color: #fff !important;
     text-decoration: none;
@@ -97,7 +99,9 @@ display: none;
 }
 
 
-
+a{
+    text-decoration: none;
+}
 
 
 
