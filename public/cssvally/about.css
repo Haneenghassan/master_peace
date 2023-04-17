@@ -1,0 +1,19 @@
+body {
+    background-image: url(../31NnfrsEplL._AC_.jpg);
+ overflow-x: hidden;
+}
+
+.buttonyellow{
+    background: url(../button_yellow.png) no-repeat left center transparent;
+    background-size: 100% 63%;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 1em 1em 1em;
+    display: inline-block;
+}
+
+a{
+    text-decoration: none;
+}
+
+.navbar {padding: 0;}

@@ -1,0 +1,134 @@
+body {
+    background-image: url(/photos/31NnfrsEplL._AC_.jpg);
+    /* width: 100%; */
+    overflow-x: hidden;
+  
+}
+
+
+#logo{
+    margin-top: -11%;
+}
+
+#video {
+
+
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.header{
+    position: relative;
+margin: -25% 0 ;
+color: #fff;
+text-shadow: 0 5px 20px #333;
+}
+.register{
+    background-color:#F48257;
+    color: white;
+    width: 10%;
+    height: 8vh;
+    margin: 27% 45%;
+    font-weight: 600;
+    position:relative;
+    z-index: 1;
+}
+#photo{
+    display: none;
+}
+.textsection1{
+text-align: center;
+margin-top:-10% ;
+color: white;
+font-size:4rem;
+}
+#section1{
+margin: 0 1%;
+}
+/* #photo1{
+    display: flex;
+    justify-content: center;
+   margin-top: -13%; 
+} */
+/* @media  (max-width: 732px){
+#video {
+display: none;
+
+}
+.header{
+
+
+}
+.register{
+display: none;
+}
+
+
+}; */
+
+.photobabysitter{
+    margin-left: 16%;
+    width: 60%;
+}
+
+
+#headersection2 {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.section3{
+    background-image: url(/photos/swash_yellow_both.png);
+}
+.peaceofmind{
+    padding-top: 4%;
+   
+}
+
+
+.buttonyellow{
+    background: url(/photos/button_pink.png) no-repeat left center transparent;
+    background-size: 100% 63%;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 1.4em 3em 1em;
+    display: inline-block;
+}
+
+.imgsection4{
+    height: 40vh;
+    width: 80%;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+
+
+@media  (max-width: 576px){
+.register{
+display: none;
+}
+.textsection1{
+margin-top: 39%;
+}
+
+.header{
+margin-top: -29%;
+}
+}
+
+@media  (max-width: 768px){
+.register{
+display: none;
+}
+.textsection1{
+margin-top: 39%;
+}
+}
+
+
+
+
