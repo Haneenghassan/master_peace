@@ -37,26 +37,35 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        // $photoPath = $request->file('profil_photo')->store('public/image');
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'is_admin'=>$request->is_admin
+            'is_admin'=>$request->is_admin,
+            // 'photo' => $photoPath,
+
+
+          
         ]);
 
+        // $user = new User();
+        //  $user->name = $request->name;
+        //  $user->email = $request->email;
+        //   $user->password = Hash::make($request->password);
+        //   $user->is_admin = $request->is_admin;
+        //   $profil_photo = $request->file('profil_photo')->getClientOriginalName();
+        //   $request->file('profil_photo')->storeAs('public/image', $profil_photo);
+        //   $user->profil_photo = $profil_photo;
+
+       
         // event(new Registered($user));
         
 
        
 
-        if( $user->is_admin =='2' || $user->is_admin =='3'){
-            Auth::login($user);
-        return redirect()->intended(RouteServiceProvider::PROVIDERS);
-
-
-        }
-        elseif ($user->is_admin =='0' ){
+      if ($user->is_admin =='0' || $user->is_admin =='2' || $user->is_admin =='3' ){
             Auth::login($user);
         return redirect()->intended(RouteServiceProvider::USERS);
         }

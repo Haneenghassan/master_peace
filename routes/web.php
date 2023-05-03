@@ -6,7 +6,9 @@ use App\Http\Controllers\BabysitterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileuserController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PreschoolreservationController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,8 @@ Route::get('/dashboard', function () {
 Route::get('/landing', function () {
     return view('landing');
 });
+
+
 
 
 
@@ -74,6 +78,7 @@ Route::get('/register', function () {
     
     Route::middleware('auth')->group(function () {
         Route::get('/profileuser/index', [ProfileuserController::class, 'index'])->name('profileuser.index');
+        Route::get('/profileuser/show/{id}', [ProfileuserController::class, 'show'])->name('profileuser.show');
         Route::get('/profileuser', [ProfileuserController::class, 'edit'])->name('profileuser.edit');
         Route::patch('/profileuser', [ProfileuserController::class, 'update'])->name('profileuser.update');
         Route::delete('/profileuser', [ProfileController::class, 'destroy'])->name('profileuser.destroy');
@@ -82,14 +87,19 @@ Route::get('/register', function () {
     Route::middleware('auth')->group(function () {
         Route::get('/profile/create', [ProfileController::class, 'create'])->name('profile.create');
         Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
-        // Route::get('/profile/indexbaby/{id}', [ProfileController::class, 'indexbaby'])->name('profile.indexbaby');
-        Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.indexbaby');
+        Route::get('/profile/indexbaby', [ProfileController::class, 'indexbaby'])->name('profile.indexbaby');
+        Route::get('/profile/show/{id}', [ProfileController::class, 'show'])->name('profile.show');
+        Route::get('/profile/showPreschool/{id}', [ProfileController::class, 'showPreschool'])->name('profile.showPreschool');
         Route::post('/addprofile', [ProfileController::class, 'store'])->name('profile.store');
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::get('/profile/editBabysitter/{id}', [ProfileController::class, 'editBabysitter'])->name('profile.editBabysitter');
+        Route::put('/profile/updateprofile/{id}', [ProfileController::class, 'updateprofile'])->name('profile.updateprofile');
+        Route::get('/profile/{id}', [ProfileController::class, 'editPreschool'])->name('profile.editPreschool');
+        Route::put('/profile/{id}', [ProfileController::class, 'updatePreschool'])->name('profile.updatePreschool');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
-  
+    
 
     Route::middleware(['auth','admin'])->name('admin.')->prefix('admin')->group(function(){
         Route::get('/',[AdminController::class,'index'])->name('index');
@@ -100,9 +110,16 @@ Route::get('/register', function () {
 
     Route::get('/preschoolpage',[LandingController::class,'preschoolsindex'])->name('preschoolspage');
     Route::get('/babysitterpage',[LandingController::class,'babysitterindex'])->name('babysitterpage');
+    // Route::get('/master',[LandingController::class,'preschoolsnav'])->name('preschoolsnav');
+    Route::post('/babysitters/{babysitter}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::post('/preschools/{preschool}/reviews', [ReviewController::class, 'preschoolStore'])->name('reviews.preschoolStore');
+    Route::get('/landing', [ReviewController::class, 'showReviews'])->name('landing');
     Route::resource('/preschools',PreschoolController::class);
     Route::resource('/babysitters',BabysitterController::class);
     Route::resource('/reservations',ReservationController::class);
+    Route::resource('/Preschoolreservations',PreschoolreservationController::class);
+
+
     
  
 

@@ -19,7 +19,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public const HOME = '/admin';
     public const USERS = '/landing';
-    public const PROVIDERS = '/profile/create';
+   
 
     
 

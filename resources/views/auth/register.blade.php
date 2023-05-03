@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
         
 
@@ -39,49 +39,37 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+          
 
         {{-- <div class="mt-4">
-            <x-input-label for="user_name" :value="__('User Name')" />
-
-            <x-text-input id="user_name" class="block mt-1 w-full"
-                            type="text"
-                            name="user_name" required />
-        </div>
-
-        <div class="mt-4">
-            <x-input-label for="photo" :value="__('Photo')" />
-
-            <x-text-input id="photo" class="block mt-1 w-full"
-                            type="file"
-                            name="photo" required />
-        </div>
-
-        <div class="mt-4">
-            <x-input-label for="mobile" :value="__('mobile')" />
-
-            <x-text-input id="mobile" class="block mt-1 w-full"
-                            type="text"
-                            name="mobile" required />
-        </div> --}}
-
+            <label for="profil_photo"> Profile Image</label>
+            <input type="file" id="profil_photo" name="profil_photo">
+          </div> --}}
+          {{-- <div class="mt-4">
+            <label for="profil_photo" class="block font-medium text-sm text-gray-700">{{ __('profil_photo') }}</label>
+            <input id="profil_photo" type="file" class="form-input rounded-md shadow-sm mt-1 block w-full"
+                   name="profil_photo" value="{{ old('profil_photo') }}" required autofocus>
+          </div> --}}
         <!-- Role -->
         <div class="mt-4">
             <x-input-label for="Role As" :value="__('Role As')"/>
-            <select name="is_admin" class="form-control">
-          
+            <select  name="is_admin" class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                <option value="" >Select One</option>
                 <option value="2" >preschool</option>
                 <option value="3" >babysitter</option>
                 <option value="0">Service recipient</option>
                 <option value="1" >Admin</option>
-             
+                
             </select>
         </div>
+        
+
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+            <a class="underline text-sm text-gray-600  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
-
-            <x-primary-button class="ml-4">
+           
+            <x-primary-button class="ml-4 buttonyellow" >
                 {{ __('Register') }}
             </x-primary-button>
 

@@ -52,15 +52,12 @@ class BabysitterController extends Controller
      * @param  \App\Models\Babysitter  $babysitter
      * @return \Illuminate\Http\Response
      */
-    public function show( Request $request, $id) 
+    public function show( $id) 
     {
-        // $value = $request->session()->get('key');
- 
-       
- 
-        // $users = $this->auth()->user()->find($id);
- 
-        // return view('profile.index', ['users' => $users]);
+        // $res=Babysitter::with('reservations')->find($id);
+        // if($res) {
+        //     return view('profile.indexBaby',compact('res'));
+        // } 
     }
 
     /**
@@ -71,8 +68,7 @@ class BabysitterController extends Controller
      */
     public function edit($id)
     {
-        // if(auth()->user()->id)
-        // dd($id);
+      
         $data = Babysitter::where('id',$id)->get();
         return view('admin.babysitter.edit',['data'=>$data]);
     }

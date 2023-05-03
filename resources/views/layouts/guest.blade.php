@@ -45,8 +45,8 @@
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 register">
-            <div>
-                <a href="/">
+            <div style="margin-top: 3%">
+                <a href="/landing">
                     <img src="/photos/logo-removebg-preview.png" alt="Bootstrap" width="140" height="90" id="logo">
                 </a>
             </div>
@@ -55,8 +55,9 @@
                 {{ $slot }}
             </div>
         </div>
+       
         <div> 
-            <img src="photos/kc_footer-illustration.png" class="img-fluid " alt="registration" style="margin-bottom: -10%;">
+            <img src="photos/kc_footer-illustration.png" class="img-fluid " alt="registration">
           </div>
     </body>
 </html>

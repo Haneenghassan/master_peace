@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Babysitter extends Model
 {
     use HasFactory;
-    // protected $table ='babysitter';
 
     protected $fillable = [
         'id',
@@ -25,4 +24,9 @@ class Babysitter extends Model
     {
         return $this->hasMany(Reservation::class,'babysitter_id','id');
     }
+
+    public function reviews()
+{
+    return $this->hasMany(Review::class);
+}
 }

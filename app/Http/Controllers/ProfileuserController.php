@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Reservation;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,10 +19,32 @@ class ProfileuserController extends Controller
 
      public function index()
      {
-        // $users=User::get();
+        $users=User::get();
        
         return view('profileuser.index');       
      }
+
+    
+    
+        public function show(Request $request, $id)
+    {
+
+        $user = User::with('reservations')->find($id);
+        if($user){
+        $reservations = $user->reservations;
+        // dd($reservations);
+        return view('profileuser.index',compact('reservations','user'));
+        }  else{
+            return  abort(404);
+           }
+
+        // return view('reservationForm');
+
+    }
+       
+      
+
+
 
      public function create()
      {

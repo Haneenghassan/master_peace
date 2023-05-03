@@ -7,6 +7,7 @@ use App\Models\Babysitter;
 use App\Models\Preschool;
 use App\Models\Reservation;
 use App\Models\Schoolimg;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,34 +26,62 @@ class ProfileController extends Controller
     }
 
 
-    public function indexbaby($id)
+    public function indexbaby()
     {
     
-        // $babysitters=Babysitter::findOrFail($id);
+        $babysitters=Babysitter::get();
+        return view('profile.indexBaby',compact('babysitters'));  
 
-        // $reservations=Reservation::get();
-        // return view('profile.indexBaby',compact('babysitters')); 
+
    
     }
     
 
-    public function create() : View
+    public function create() 
      {
        
         return view('profile.create');       
      }
 
+
      public function show( Request $request, $id) 
+
      {
-        $babysitter=Babysitter::find($id);
-        return view('profile.indexBaby',compact('babysitter')); 
+       
+        $babysitter=Babysitter::with('reservations')->find($id);
+        
+        if($babysitter) {
+            $reservations= $babysitter->reservations;
+            return view('profile.indexBaby',compact('babysitter', 'reservations'));
+        }
+        else{
+         return  abort(404);
+        }
+        
      }
+
+     public function showPreschool( Request $request, $id) 
+
+     {
+       
+        
+        $preschool=Preschool::with('reservations')->find($id);
+        if($preschool){
+           
+            $reservationspre= $preschool->reservations;
+            return view('profile.index',compact('preschool', 'reservationspre'));
+        }
+        else{
+         return  abort(404);
+        }
+        
+     }
+
+
 
      public function store(Request $request)
      {
-        // dd('hello');
-        if(auth()->user()->is_admin == '3' ) {
-            //    dd('hello');
+   if(auth()->user()->is_admin == '3' ) {
         $babysitter = new Babysitter();
 
         $babysitter->first_name = $request->input('first_name');
@@ -65,23 +94,7 @@ class ProfileController extends Controller
         $babysitter->img = $img;
         $babysitter->save();
 
-        // $reservation = new Reservation();
-        
-        // $reservation->first_name = $request->input('first_name');
-        // $reservation->last_name = $request->input('last_name');
-        // $reservation->email = $request->input('email');
-        // $reservation->mobile = $request->input('mobile');
-        // $reservation->start_time = $request->input('start_time');
-        // $reservation->end_time = $request->input('end_time');
-        // $reservation->child_firstname = $request->input('child_firstname');
-        // $reservation->child_lastname = $request->input('child_lastname');
-        // $reservation->child_age = $request->input('child_age');
-        // $reservation->user_id = $request->user()->id;
-        // $reservation->save();
-
-
-       
-        return redirect()->route('profile.indexbaby'); 
+        return redirect()->route('profile.show',['id'=>$babysitter->id]); 
 
         }else{
             $preschool = new Preschool();
@@ -89,7 +102,6 @@ class ProfileController extends Controller
             $preschool->first_name = $request->input('first_name');
             $preschool->last_name = $request->input('last_name');
             $preschool->manegerName = $request->input('manegerName');
-            // $preschool->profil_photo = $request->input('profil_photo');
             $preschool->Description = $request->input('description');
             $preschool->mobile = $request->input('mobile');
             $preschool->user_id = $request->user()->id;
@@ -101,9 +113,7 @@ class ProfileController extends Controller
             $preschoolimg = New Schoolimg();
 
            foreach( $request->file('images') as $image){
-            // dd($image);
             $imageName = $image->getClientOriginalName();
-            // dd($imageName);
             $image->move( public_path('image'), $imageName);
 
             $newImage = Schoolimg::create([
@@ -113,18 +123,101 @@ class ProfileController extends Controller
             $allImages [] = $imageName;
         }
         $preschoolimg->save();
+        // dd(public_path('image'));
 
         
     
-        //   return Auth::user()->id;
-        // dd(Auth::user()->id);
-        // dd($babysitter);        
-            return redirect()->route('profile.index');  
+               
+        return redirect()->route('profile.showPreschool',['id'=>$preschool->id]); 
+  
         }
      }
     /**
      * Display the user's profile form.
      */
+   
+
+    public function  editBabysitter ($id){
+        $babysitter = Babysitter::findorfail($id);
+       return view('profile.updateProfile',compact('babysitter')) ;
+
+
+    }
+
+
+    public function updateprofile(Request $request, $id){
+
+
+        $babysitter = Babysitter::findorfail($id);
+
+        if ($request->hasFile('img')) {
+            $img = $request->file('img')->getClientOriginalName();
+            $request->file('img')->storeAs('public/image', $img);
+        } else {
+            $img = $babysitter->img; // use the existing img if no file was uploaded
+        }
+
+        $babysitter->first_name =$request->first_name;
+        $babysitter->last_name =$request->last_name;
+        auth()->user()->email = $request->user()->email;       
+        $babysitter->description =$request->description;
+       $babysitter->mobile=$request->mobile;
+       $babysitter->img=$img;
+       $babysitter->save();
+      return redirect()->route('profile.show',['id'=>$babysitter->id]); 
+
+    }
+
+    public function  editPreschool ($id){
+        $preschool = Preschool::findorfail($id);
+       return view('profile.updateProfile',compact('preschool')) ;
+
+
+    }
+
+    public function updatePreschool(Request $request, $id){
+
+        $preschool = Preschool::findorfail($id);
+       // Edit images slider
+        if ($request->hasFile('images')) {
+            // Delete all existing images
+            $preschool->schoolimgs()->delete();
+        
+            // Loop through each new image and create a new SchoolImg instance
+            foreach ($request->file('images') as $file) {
+                $img = $file->getClientOriginalName();
+                $file->move( public_path('image'), $img);
+        
+                $schoolimg = new SchoolImg(['image' => $img]);
+                $preschool->schoolimgs()->save($schoolimg);
+            }
+        }
+
+        // Edit profile Picture
+        if ($request->hasFile('img')) {
+            $img = $request->file('img')->getClientOriginalName();
+            $request->file('img')->storeAs('public/image', $img);
+        } else {
+            $img = $preschool->img; // use the existing img if no file was uploaded
+        }
+
+        $preschool->first_name =$request->first_name;
+        $preschool->last_name =$request->last_name;
+        auth()->user()->email = $request->user()->email;       
+        $preschool->description =$request->description;
+        $preschool->mobile=$request->mobile;
+        $preschool->img=$img;
+        
+        
+        
+// Create new schoolimgs records for the uploaded images
+$preschool->save();
+
+
+      return redirect()->route('profile.showPreschool',['id'=>$preschool->id]); 
+
+    }
+
     public function edit(Request $request): View
     {
        
@@ -132,6 +225,7 @@ class ProfileController extends Controller
             'user' => $request->user(),
 
         ]);
+     
     }
 
 
@@ -149,9 +243,10 @@ class ProfileController extends Controller
        
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-        // return view('profile.edit',compact('preschool')) ;
+        return Redirect::route('profile.indexbaby')->with('status', 'profile-updated');
     }
+    
+
 
     /**
      * Delete the user's account.

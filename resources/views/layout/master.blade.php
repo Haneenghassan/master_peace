@@ -49,16 +49,18 @@
                     <a class="nav-link" aria-current="page" href="/landing">Home</a>
                 </li>
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Preschool
-                        </a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="/HappyVally" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Preschools
+                </a>
+                
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">kiddy planet </a></li>
-                            <li><a class="dropdown-item" href="#">Cut Kids</a></li>
-                            <li><a class="dropdown-item" href="#">Classy kids</a></li>
+                            <li><a class="dropdown-item" href="/HappyVally">kiddy planet </a></li>
+                          
                         </ul>
+                </a>
+                        
                     </li>
 
                     <li class="nav-item">
@@ -72,55 +74,44 @@
                   <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item">
                         @if(auth()->user()->is_admin == '0')
-                      <a class="nav-link" href="{{route('profileuser.index',auth()->user()->id)}}"><i class="fa-solid fa-user"></i>Profile</a></li>
-                        @elseif(auth()->user()->is_admin == '2' || auth()->user()->is_admin == '3')
-                          <a class="nav-link" href="{{route('profile.indexbaby',auth()->user()->babysitter->id)}}" ><i class="fa-solid fa-user"></i> Profile</a></li>
-                           {{-- <button>  <a class="nav-link" >create profile</a></button> --}}
-                        @endif
-                      <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                      <a class="nav-link" href="route('logout')"
-                                  onclick="event.preventDefault();
+                      <a class="nav-link" href="{{route('profileuser.show',auth()->user()->id)}}"><i class="fa-solid fa-user"></i>Profile</a></li>
+                        @elseif(auth()->user()->is_admin == '3')
+                        
+                        {{-- check if the babysitter relationship on the current authenticated user is null. If it is not null, we generate the URL for the profile.show route using the id property of the babysitter relationship. If it is null, we set the href attribute to '#' to disable the link. --}}
+                          <a class="nav-link" href="{{ auth()->user()->babysitter ? route('profile.show', auth()->user()->babysitter->id) : '#' }}" ><i class="fa-solid fa-user"></i> Profile</a></li>
+                          @elseif(auth()->user()->is_admin == '2' )
+                          <a class="nav-link" href="{{ auth()->user()->preschool ? route('profile.showPreschool', auth()->user()->preschool->id) : '#' }}" ><i class="fa-solid fa-user"></i> Profile</a></li>
+                          @endif
+                           <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a class="nav-link" href="route('logout')"
+                            onclick="event.preventDefault();
                                               this.closest('form').submit();">
                              
-                      </i> {{ __('Log Out') }}</a></li>
-                      </form>
-                      @else
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false"><i class="fa-solid fa-right-to-bracket"></i> Login / Register</a>
-                        <ul class="dropdown-menu">
-                          
-                            <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
-                            <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                @endif
-
-                {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-                  @if (Route::has('login'))
-                      <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                          @auth
-                              <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
+                            </i> {{ __('Log Out') }}</a></li>
+                          </form>
                           @else
-                              <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
-      
-                              @if (Route::has('register'))
-                                  <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
-                              @endif
-                          @endauth
-                      </div>
-                  @endif --}}
-                
-
+                          <li class="nav-item dropdown" style="list-style: none;">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false"><i class="fa-solid fa-right-to-bracket"></i> Login / Register</a>
+                            <ul class="dropdown-menu">
+                              
+                              <li><a class="dropdown-item" href="{{route('login')}}">Login</a></li>
+                              <li><a class="dropdown-item" href="{{route('register')}}">Register</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                        @endif
+                      
+                        
+                        
                   </div>
 
             
-        </div>
-
-    </nav>
-
+                </div>
+                
+              </nav>
+              
     @yield('content')
 
     @yield('Profile')
@@ -221,9 +212,9 @@
         <!-- Copyright -->
         <div class="text-center p-4" style="background-color: #808080;">
           <div>
-          <img src="../photos/facebook (1).png" class="img-fluid" alt="...">
-          <img src="../photos/instagram (1).png" class="img-fluid" alt="...">
-          <img src="../photos/linkedin (1).png" class="img-fluid" alt="...">
+          <img src="../../photos/facebook (1).png" class="img-fluid" alt="...">
+          <img src="../../photos/instagram (1).png" class="img-fluid" alt="...">
+          <img src="../../photos/linkedin (1).png" class="img-fluid" alt="...">
         </div>
         <div style="margin-top: 1%;">
           © 2021 Copyright:

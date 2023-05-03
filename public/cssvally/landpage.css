@@ -7,7 +7,7 @@ body {
 
 
 #logo{
-    margin-top: -11%;
+    margin-top: -5%;
 }
 
 #video {
@@ -33,6 +33,16 @@ text-shadow: 0 5px 20px #333;
     position:relative;
     z-index: 1;
 }
+
+.register:hover{
+    background-color:#F48257;
+    color: white; 
+}
+
+#register{
+    text-decoration: none;
+    color: white;
+}
 #photo{
     display: none;
 }
@@ -44,6 +54,14 @@ font-size:4rem;
 }
 #section1{
 margin: 0 1%;
+}
+
+.hyberlinks{
+    color: black;
+}
+
+.hyberlinks:hover{
+    color: black; 
 }
 /* #photo1{
     display: flex;
@@ -66,10 +84,10 @@ display: none;
 
 }; */
 
-.photobabysitter{
+/* .photobabysitter{
     margin-left: 16%;
     width: 60%;
-}
+} */
 
 
 #headersection2 {
@@ -103,8 +121,11 @@ display: none;
 
 a{
     text-decoration: none;
+  
 }
-
+ a:hover{
+    color: white;
+ }
 
 
 @media  (max-width: 576px){
@@ -127,6 +148,102 @@ display: none;
 .textsection1{
 margin-top: 39%;
 }
+}
+
+.card1 {
+    border-radius: .7rem;
+  }
+
+
+  /* reviews */
+
+  .heading {
+    position: relative;
+    margin-top: 3%;
+}
+.testimonials{
+height: 70vh;
+}
+
+
+/* .testimonials:before {
+    content: "";
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    left: 0;
+} */
+.testimonials .heading h2 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.testimonials .heading h2 span {
+    color: #F48257;
+}
+
+.testimonials p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #d1e5e7;
+    margin: 20px 0;
+    padding: 0;
+}
+
+/* Image */
+.testimonials .carousel-inner .carousel-item .team {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #F48257;
+    border-radius: 100%;
+    padding: 5px;
+    margin: 50px 0 15px;
+}
+
+.testimonials .carousel-inner .carousel-item h3 {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.testimonials .carousel-inner .carousel-item h4 {
+    font-size: 14px;
+    font-weight: 300;
+    color: #e2e1e1;
+    margin-bottom: 20px;
+}
+
+.testimonials .carousel-indicators {
+    bottom: -30px;
+}
+
+.testimonials .carousel-indicators li {
+    background-color: #b8b7b7;
+    border-radius: 30px;
+    height: 4px;
+    width: 40px;
+}
+
+.testimonials .carousel-indicators .active {
+    background-color: #F48257;
+}
+
+.testimonials .control span {
+    cursor: pointer;
+}
+
+.testimonials .icon {
+    height: 40px;
+    width: 40px;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    font-size: 30px;
+    background-image: none;
+    color: #ffffff;
 }
 
 

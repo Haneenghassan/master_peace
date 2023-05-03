@@ -16,20 +16,12 @@ class PreschoolController extends Controller
     public function index()
     {
         $preschools=Preschool::get();
-        // dd($preschools);
         return view('admin.preschool.index',['preschools'=>$preschools]);
     }
 
     
 
-    // public function canceled($id){
-    //     $preschools=Preschool::find($id);
-    //     $preschools->status='canceled';
-    //     $preschools->save();
-
-
-    //     return redirect()->route('admin.preschools.index');
-    // }
+   
 
     /**
      * Show the form for creating a new resource.

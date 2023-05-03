@@ -64,12 +64,11 @@
           <div class="card" style="width: 18rem;">
               <img src="{{URL::asset("storage/image/".$preschool->img)}}" class="card-img-top" alt="pic1" height="260" width="250">
               <div class="card-body">
-                <h5 class="card-title">{{$preschool->first_name}}{{$preschool->last_name}}</h5>
+                <h5 class="card-title">{{$preschool->first_name}} {{$preschool->last_name}}</h5>
                 <p class="card-text"></p>
                 <div class="text-center" style="margin-top: -8%;">
                   <p  style="font-size: 24px;">
-                      <a class="buttonyellow "  href="{{route('profile.index')}}"  >Take A Tour</a>
-                  </p>
+                    <a class="buttonyellow "  href="{{route('profile.showPreschool',$preschool->id)}}"  >Take A Tour</a>                  </p>
               </div>
               </div>
             </div>

@@ -37,7 +37,7 @@
                 <p class="card-text"></p>
                 <div class="text-center" style="margin-top: -8%;">
                   <p  style="font-size: 24px;">
-                      <a class="buttonyellow "  href="{{route('profile.indexbaby',$babysitter->id)}}"  >Take A Tour</a>
+                      <a class="buttonyellow "  href="{{route('profile.show',$babysitter->id)}}"  >Take A Tour</a>
                   </p>
               </div>
               </div>
@@ -47,99 +47,6 @@
             
           </div>
           @endforeach
-
-
-      {{-- <div class=" col-6">
-        <img src="kiddyplant.jpg" class="card-img-top rounded" alt="preschools">
-        <div class="card-body">
-          <h3 class="card-title text-center mt-2">kiddy planet</h3>
-          <ul class="list-unstyled d-flex justify-content-center mt-1">
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star-half-alt fa-sm text-warning"></i>
-            </li>
-          </ul>
-          <div class="text-center" style="margin-top: -8%;">
-            <p  style="font-size: 24px;">
-                <a class="buttonyellow "  href=""  >Take A Tour</a>
-            </p>
-        </div>
-        </div>
-
-        
-      </div>
-
-      <div class=" col-6">
-        <img src="kiddyplant.jpg" class="card-img-top rounded" alt="preschools">
-        <div class="card-body">
-          <h3 class="card-title text-center mt-2">kiddy planet</h3>
-          <ul class="list-unstyled d-flex justify-content-center mt-1">
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star-half-alt fa-sm text-warning"></i>
-            </li>
-          </ul>
-          <div class="text-center" style="margin-top: -8%;">
-            <p  style="font-size: 24px;">
-                <a class="buttonyellow "  href=""  >Take A Tour</a>
-            </p>
-        </div>
-        </div>
-
-        
-      </div>
-
-      <div class="col-6 " >
-        <img src="kiddyplant.jpg" class="card-img-top rounded" alt="preschools">
-        <div class="card-body">
-          <h3 class="card-title text-center mt-2">kiddy planet</h3>
-          <ul class="list-unstyled d-flex justify-content-center mt-1">
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star-half-alt fa-sm text-warning"></i>
-            </li>
-          </ul>
-          <div class="text-center" style="margin-top: -8%;">
-            <p  style="font-size: 24px;">
-                <a class="buttonyellow "  href=""  >Take A Tour</a>
-            </p>
-        </div>
-        </div>
-
-      </div> --}}
       </div>
 
      

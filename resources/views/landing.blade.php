@@ -17,109 +17,62 @@
         <!-- fs:fontsize && text-center:to make text in center page -->
         <h1 class=" fs-1 text-center header ">A HEARTFELT DEDICATION TO <br>  NURTURING INTELLIGENCE.</h1>
     </div>
-
-
-<!-- Button trigger modal -->
-<button type="button" class="btn register" style=" " data-bs-toggle="modal" data-bs-target="#exampleModal">
-Join Our Team</button> 
-
-<!-- Modal -->
+   @if(!auth()->check())
+    <button type="button" class="btn register" ><a id="register" href="{{route('register')}}">
+      Register</a></button>
+      @else
+      <button type="button" class="btn register" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Register</button>
+        <!-- Modal -->
  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Create Form</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{{route('profile.store')}}" method="POST" enctype="multipart/form-data">
-            {{ csrf_field() }}
-              <div class="row jumbotron box8 rounded">
-                {{-- <div class="col-sm-12  text-center">
-                    <h1 > Create Form</h1>
-                </div> --}}
-              <div class="col-sm-6 form-group mb-5">
-                <label for="first_name">First Name</label>
-                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="Enter your first name." required>
-              </div>
-              <div class="col-sm-6 form-group mb-5">
-                <label for="last_name">Last name</label>
-                <input type="text" class="form-control" name="last_name" id="last_name" placeholder="Enter your Last Name." required>
-              </div>
-              <div class="col-sm-6 form-group mb-5">
-                <label for="mobile">mobile</label>
-                <input type="number" class="form-control" name="mobile" id="mobile" placeholder="Enter your Mobile." required>
-              </div>
-              @if(auth()->user()->is_admin == '2')
-              <div class="col-sm-6 form-group mb-5">
-                  <label for="manegerName">Manegar Name</label>
-                  <input type="text" class="form-control" name="manegerName" id="manegerName" placeholder="Enter your Manegar Name." required>
-                </div>
-                @endif
-                
-              <div class="col-sm-6 form-group mb-5">
-                <label for="description">description</label>
-                <input type="description" class="form-control" name="description" id="description" placeholder="Enter your Descrption." required>
-              </div>
-              <div class="col-sm-6 form-group mb-5">
-                  <label for="img">image</label>
-                  <input type="file" class="form-control" name="img" id="img"  required>
-                </div>
-  
-                @if(auth()->user()->is_admin == '2')
-                <div class="col-sm-6 form-group mb-5">
-                  <label for="img">image</label>
-                  <input type="file" class="form-control" name="images[]" id="image" multiple required>
-                </div>
-                @endif
-
-            </div>
+        <div class="alert alert-success" role="alert">
+        You Already Registerd
+        </div>
+          
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-           
-              <button class="btn btn-primary float-right">Submit</button>
           </div>
         </form>
     </div>
   </div>
 </div>
+@endif
+
     <div class="textsection1">
         <p>Our Services<p>    
             </div>
 
     <div id="section1" >
-        <div class="row row-cols-4 row-cols-md-3 g-4">
-            <div class="col">
+        <div class="row g-4 justify-content-md-center">
+            <div class="col col-lg-4">
               <div class="card h-100">
-                <a href="/preschoolpage">
-                <img src="/photos/109-1090866_special-project-preschool-icon-png-transparent-removebg-preview (1).png" class="card-img-top mt-1 h-55 "  alt="...">
+                <a class="hyberlinks" href="/preschoolpage">
+                <img src="/photos/109-1090866_special-project-preschool-icon-png-transparent-removebg-preview (1).png" class="card-img-top mt-1 " height="260" width="250"  alt="...">
                 <div class="card-body">
-                  <h5 class="card-text" style="font-size: 2.5rem;text-align: center;">Pre-Schools</h5>
+                  <h5 class="card-text" style="font-size: 2.5rem;text-align: center;">PreSchools</h5>
                 </div>
                 </a>
               </div>
             </div>
-            <div class="col">
+            <div class="col col-lg-4">
                 <!-- h-100 act the height -->
               <div class="card h-100">
-                <a href="/babysitterpage">
-                <img src="/photos/babysitter.png" class="card-img-top h-55 mt-4 photobabysitter" alt="babysittercard">
+                <a  class="hyberlinks" href="/babysitterpage">
+                <img src="/photos/babysitter.png" class="card-img-top  mt-1 photobabysitter" height="260" width="250" alt="babysittercard">
                 <div class="card-body">   
                   <h5 class="card-text" style="font-size: 2.5rem;text-align: center;">Baby Sitter</h5>
                 </div>
               </div>
+            </a>
             </div>
-            {{-- <div class="col">
-              <div class="card h-100">
-                  <div class="h-60" style="width: 70%;">
-                <img src="/photos/special_need-removebg-preview-removebg-preview.png" class="card-img-top"   alt="...">
-                 </div>
-                <div class="card-body ">
-                  <h5 class="card-text " style="font-size: 2.5rem;text-align: center;">disabilities</h5>
-                </div>
-              </div>
-            </div> --}}
+          
           </div>
     </div>
 
@@ -161,11 +114,11 @@ Join Our Team</button>
             <p>
                 When you join us, you embrace our environment of community. We are proud to cultivate an environment where all pre-schools and peoplewho can represente care can are represented and celebrated in our website. Both your professional and personal aspirations matter to us. Showing appreciation is one of our favorite things to do.
             </p> 
-        {{-- <div>
+        <div>
             <p  style="font-size: 30px;font-weight: 600;">
-                <a class="buttonyellow"  href="{{route('reservations.index')}}"  >Join Us</a>
+                <a class="buttonyellow"  href="{{route('profile.create')}}"  >Join Us</a>
             </p>
-        </div> --}}
+        </div>
         </div>
         <div class="col-5 ms-5">
             <img src="/photos/Untitled design.png" class="img-fluid imgsection4 mt-3" alt="photojoinus">
@@ -174,9 +127,9 @@ Join Our Team</button>
 </div>
 
 
-<section style="background-image: url(/photos/Swash_Green_Top.png); display: flex;">
+<section style="background-image: url(/photos/Swash_Green_Top.png); "  class="testimonials">
   
-      <div class="row text-center"  style="margin:3% 3%;" >
+      {{-- <div class="row text-center"  style="margin:3% 3%;" >
       <div class="col-md-4 mb-5 mb-md-0">
         <div class="d-flex justify-content-center mb-4">
           <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
@@ -189,23 +142,6 @@ Join Our Team</button>
           adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic
           tenetur.
         </p>
-        <!-- <ul class="list-unstyled d-flex justify-content-center mb-0">
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star-half-alt fa-sm text-warning"></i>
-          </li>
-        </ul> -->
       </div>
       <div class="col-md-4 mb-5 mb-md-0">
         <div class="d-flex justify-content-center mb-4">
@@ -218,23 +154,7 @@ Join Our Team</button>
           <i class="fas fa-quote-left pe-2"></i>Ut enim ad minima veniam, quis nostrum
           exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid commodi.
         </p>
-        <!-- <ul class="list-unstyled d-flex justify-content-center mb-0">
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-        </ul> -->
+      
       </div>
       <div class="col-md-4 mb-0">
         <div class="d-flex justify-content-center mb-4">
@@ -247,27 +167,69 @@ Join Our Team</button>
           <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
           dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
         </p>
-        <!-- <ul class="list-unstyled d-flex justify-content-center mb-0">
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="fas fa-star fa-sm text-warning"></i>
-          </li>
-          <li>
-            <i class="far fa-star fa-sm text-warning"></i>
-          </li>
-        </ul> -->
+       
       </div>
-    </div>
+    </div> --}}
+    <br>
+      <div class="heading text-center">
+          <h2>What's
+              <span>Clients</span>
+              Says?</h2>
+
+      </div>
+      <div class="container">
+          <div class="row text-center">
+              <div class="col-md-12">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                  <!-- Indicators-->
+                  <ol class="carousel-indicators">
+                    @foreach ($reviews as $key=>$review)
+
+                    <li style="list-style: none;" data-target="#carouselExampleIndicators" data-slide-to="{{$key}}" class="@if($loop->first) active @endif"></li>
+                    @endforeach
+                    
+                  </ol>
+                  
+                  <div class="carousel-inner">
+                    <!-- Item-1 -->
+                    @foreach ($reviews as $review)    
+                          <div class="carousel-item  text-center @if($loop->first) active @endif">
+                            <img src="https://i.ibb.co/8x9xK4H/team.jpg" alt="" class="center-block team">
+                            <h3>{{$review->user->first_name}}</h3>
+                      
+                            {{-- <h4>Front End Developer</h4> --}}
+                            <div style="padding-left: 20% ; padding-right:20%">
+                            <p class="text-break text-wrap" >{{$review->comment}}</p>
+                            </div>
+                            </div>
+                            
+                            @endforeach
+                          </div>
+                      <a
+                          class="carousel-control-prev control"
+                          data-target="#carouselExampleIndicators"
+                          role="button"
+                          data-slide="prev">
+                          <span class="fa fa-angle-left icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                      </a>
+                      <a
+                          class="carousel-control-next control"
+                          data-target="#carouselExampleIndicators"
+                          role="button"
+                          data-slide="next">
+                          <span class="fa fa-angle-right icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
   </section>
-</div>
+  </section>
+
+<script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
 
 @endsection

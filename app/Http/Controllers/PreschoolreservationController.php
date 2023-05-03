@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Babysitter;
 use App\Models\Preschool;
 use App\Models\Reservation;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class ReservationController extends Controller
+class PreschoolreservationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +15,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-     
-    $reservation = Babysitter::with('reservations')->get();
-
- 
-        return view('profile.indexbaby',compact('reservation'));
+        //
     }
 
     /**
@@ -30,10 +23,9 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $id)
+    public function create()
     {
-    //    $preschool=Preschool::find($id);
-    //    return view('reservationForm',compact('preschool'));
+        //
     }
 
     /**
@@ -44,9 +36,7 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        
-
-        $babysitter = new Babysitter() ;
+        $preschool = new Preschool() ;
      
         
         
@@ -55,13 +45,11 @@ class ReservationController extends Controller
         $reservation->last_name = $request->input('last_name');
         $reservation->email = $request->input('email');
         $reservation->mobile = $request->input('mobile');
-        $reservation->start_time = $request->input('start_time');
-        $reservation->end_time = $request->input('end_time');
         $reservation->child_firstname = $request->input('child_firstname');
         $reservation->child_lastname = $request->input('child_lastname');
         $reservation->child_age = $request->input('child_age');
         $reservation->user_id = $request->user()->id;
-        $reservation->babysitter_id = $request->input('id');
+        $reservation->preschool_id = $request->input('id');
         
         // dd($reservation);
         $reservation->save();
@@ -73,44 +61,40 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Reservation  $reservation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request,$id)
     {
-
-        $babysitter = Babysitter::find($id);
-
-
-        if($babysitter){
-            return view('reservationForm',compact('babysitter'));
-        }else {
+        $preschool=Preschool::find($id);
+        if( $preschool){
+        return view('reservationForm',compact('preschool'));
+        }else{
             abort(404);
         }
-        
 
     }
+
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Reservation  $reservation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $reservation = Reservation::where('id',$id)->get();
-        return view('profile.indexbaby',['reservation'=>$reservation]);
-       
+        return view('profile.index',['reservation'=>$reservation]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reservation  $reservation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request , $id)
+    public function update(Request $request, $id)
     {
         $reservations=Reservation::find($id);
         $reservations->status=$request->select;
@@ -121,7 +105,7 @@ class ReservationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Reservation  $reservation
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
