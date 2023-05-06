@@ -3,7 +3,23 @@
 @section('Profile')
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
+@if($preschool->status == 'pending')
+<div class="alert alert-warning mt-5 py-5 pl-5 text-center" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>{{ $message }}</p>
+  <hr>
+</div>
 
+@elseif($preschool->status == 'rejected')
+<div class="alert alert-danger mt-5 py-5  text-center" role="alert">
+  <h4 class="alert-heading"></h4>
+  <p>{{ $message }}</p>
+  <hr>
+</div>
+  
+   
+  
+@else
   <section>
     <div class="contain">
       <div class="box">
@@ -54,7 +70,7 @@
           </ul>
           <ul>
               <h3>Contact</h3>
-              <li> {{auth()->user()->email}}</li>
+              {{-- <li>  {{$preschool->user->email}}</li> --}}
           </ul>
       </div>
   </div>
@@ -89,7 +105,7 @@
 
       {{-- Reservation Section --}}   
       @if(auth()->user()->is_admin == '2')
-         @if(isset($reservation))
+         @if(!$reservationspre->isEmpty())
       <section id="explorecourses">
         <div class="title">
           <h2><span style="color: #F48257;">My </span>Reservation</h2>
@@ -191,7 +207,7 @@
                   @endforeach
                 </div>
         </section> 
-      @elseif(!isset($reservation))
+      @else
       <section id="explorecourses">
           <div class="title">
             <h2><span style="color: #F48257;">My </span>Reservation</h2>
@@ -212,12 +228,13 @@
       @endif
 
 @endif
-
+{{-- Reviews section --}}
 <section id="explorecourses">
   <section class="content-item" id="comments">
     <div class="container">   
       <div class="row">
-            <div class="col-sm-8">   
+        <div class="col-sm-8"> 
+              @if(auth()->user()->is_admin == '0')    
                 <form method="POST" action="{{ route('reviews.preschoolStore' ,$preschool->id)}}">
                   @csrf
                   <input type="hidden" name="preschool_id" value="{{$preschool->id }}">
@@ -240,11 +257,12 @@
                     
 
                 </form>
-                
+
+                @endif
                 
                 <!-- COMMENT  - START -->
                 @foreach($preschool->reviews as $review)
-          
+          <h2>Reviews</h2>
                 <div class="media">
                     <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
                     <div class="media-body  d-flex flex-column">
@@ -272,7 +290,7 @@
   </section>
 
       
-    
+   @endif 
 
 
 

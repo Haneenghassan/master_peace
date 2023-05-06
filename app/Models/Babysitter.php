@@ -20,6 +20,11 @@ class Babysitter extends Model
         'user_id'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function reservations()
     {
         return $this->hasMany(Reservation::class,'babysitter_id','id');
@@ -29,4 +34,10 @@ class Babysitter extends Model
 {
     return $this->hasMany(Review::class);
 }
+
+public function contacts()
+{
+    return $this->hasMany(Contact::class,'babysitter_id','id');
+}
+
 }

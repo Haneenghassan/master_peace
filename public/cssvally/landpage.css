@@ -104,7 +104,16 @@ display: none;
 }
 
 
-.buttonyellow{
+/* .buttonyellow{
+    background: url(/photos/button_pink.png) no-repeat left center transparent;
+    background-size: 100% 63%;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 1.4em 3em 1em;
+    display: inline-block;
+} */
+
+.buttonpink{
     background: url(/photos/button_pink.png) no-repeat left center transparent;
     background-size: 100% 63%;
     color: #fff !important;

@@ -3,14 +3,17 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\PreschoolController;
 use App\Http\Controllers\BabysitterController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileuserController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\PreschoolreservationController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CheckUserId;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,13 +26,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
@@ -48,13 +51,14 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Route::get('/contact', function () {
+//     return view('contact');
+// });
 
 Route::get('/register', function () {
     return view('register');
 });
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 // Route::get('/login', function () {
@@ -71,9 +75,9 @@ Route::get('/register', function () {
         return view('layout.sidebar');
     });
     
-    Route::get('/signup', function () {
-        return view('signup');
-    });
+    // Route::get('/signup', function () {
+    //     return view('signup');
+    // });
     
     
     Route::middleware('auth')->group(function () {
@@ -105,12 +109,16 @@ Route::get('/register', function () {
         Route::get('/',[AdminController::class,'index'])->name('index');
     Route::resource('/preschools',PreschoolController::class);
     Route::resource('/babysitters',BabysitterController::class);
+    Route::resource('/contacts',ContactController::class);
 });
 
 
     Route::get('/preschoolpage',[LandingController::class,'preschoolsindex'])->name('preschoolspage');
     Route::get('/babysitterpage',[LandingController::class,'babysitterindex'])->name('babysitterpage');
+    // Route::match(['get', 'post']'/babysitterpage/search',[LandingController::class,'search'])->name('babysitterpage.search');
     // Route::get('/master',[LandingController::class,'preschoolsnav'])->name('preschoolsnav');
+    Route::match(['get', 'post'], '/babysitterpage/search', [LandingController::class,'search'])->name('babysitterpage.search');
+    Route::match(['get', 'post'], '/preschoolpage/search', [LandingController::class,'searchPre'])->name('preschoolpage.search');
     Route::post('/babysitters/{babysitter}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
     Route::post('/preschools/{preschool}/reviews', [ReviewController::class, 'preschoolStore'])->name('reviews.preschoolStore');
     Route::get('/landing', [ReviewController::class, 'showReviews'])->name('landing');
@@ -118,6 +126,12 @@ Route::get('/register', function () {
     Route::resource('/babysitters',BabysitterController::class);
     Route::resource('/reservations',ReservationController::class);
     Route::resource('/Preschoolreservations',PreschoolreservationController::class);
+    Route::resource('/contacts',ContactController::class);
+
+    // Route::resource('/search',SearchController::class);
+
+
+   
 
 
     

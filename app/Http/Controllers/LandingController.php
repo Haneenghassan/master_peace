@@ -28,4 +28,30 @@ public function babysitterindex()
     $babysitters = Babysitter::get();
     return view('babysitterspage' , ["babysitters"=>$babysitters]);      
 }
+
+public function search(Request $request)
+{
+    $query = $request->input('search');
+
+    $babysitters = Babysitter::where('first_name', 'like', "%$query%")
+        ->orWhere('last_name', 'like', "%$query%")
+        // ->orWhere('city', 'like', "%$query%")
+        ->get();
+
+
+    return view('babysitterspage', compact('babysitters'));
+}
+
+public function searchPre(Request $request)
+{
+    $query = $request->input('search');
+
+    $preschools = Preschool::where('first_name', 'like', "%$query%")
+        ->orWhere('last_name', 'like', "%$query%")
+        // ->orWhere('city', 'like', "%$query%")
+        ->get();
+
+
+    return view('preschoolspage', compact('preschools'));
+}
 }

@@ -15,7 +15,10 @@ class PreschoolreservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservation = Preschool::with('reservations')->get();
+
+ 
+        return view('profile.index',compact('reservation'));
     }
 
     /**
@@ -51,7 +54,6 @@ class PreschoolreservationController extends Controller
         $reservation->user_id = $request->user()->id;
         $reservation->preschool_id = $request->input('id');
         
-        // dd($reservation);
         $reservation->save();
         
     

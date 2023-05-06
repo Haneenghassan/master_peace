@@ -35,47 +35,43 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-        // $photoPath = $request->file('profil_photo')->store('public/image');
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'string', 'confirmed', 'min:8', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',Rules\Password::defaults()],
+    ]);
+
+    $messages = [
+        'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, and one number.',
+    ];
+
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'is_admin'=>$request->is_admin,
-            // 'photo' => $photoPath,
+            
 
 
           
         ]);
 
-        // $user = new User();
-        //  $user->name = $request->name;
-        //  $user->email = $request->email;
-        //   $user->password = Hash::make($request->password);
-        //   $user->is_admin = $request->is_admin;
-        //   $profil_photo = $request->file('profil_photo')->getClientOriginalName();
-        //   $request->file('profil_photo')->storeAs('public/image', $profil_photo);
-        //   $user->profil_photo = $profil_photo;
-
-       
-        // event(new Registered($user));
+      
         
 
        
 
       if ($user->is_admin =='0' || $user->is_admin =='2' || $user->is_admin =='3' ){
             Auth::login($user);
-        return redirect()->intended(RouteServiceProvider::USERS);
+        return redirect()->intended(RouteServiceProvider::USERS)->with('messages', $messages);
         }
         else{
             Auth::login($user);
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->intended(RouteServiceProvider::HOME)->with('messages', $messages);
  
         }
 
-        // return redirect(RouteServiceProvider::USERS);
 
     }
+
+    
 }

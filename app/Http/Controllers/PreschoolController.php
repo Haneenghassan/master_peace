@@ -63,8 +63,8 @@ class PreschoolController extends Controller
      */
     public function edit($id)
     {
-        $data = Preschool::where('id',$id)->get();
-        return view('admin.preschool.edit',['data'=>$data]);
+        $preschool = Preschool::where('id',$id)->get();
+        return view('admin.preschool.edit',['preschool'=>$preschool]);
     }
 
     /**
@@ -91,8 +91,8 @@ class PreschoolController extends Controller
     public function destroy($id)
     {
         Preschool::findorfail($id)->delete();
-        // return view('admin.preschool.index');
-        return redirect()->route('admin.preschools.index');
+
+        return redirect()->back();
       
     }
 

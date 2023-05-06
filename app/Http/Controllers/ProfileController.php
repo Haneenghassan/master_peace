@@ -47,16 +47,51 @@ class ProfileController extends Controller
      public function show( Request $request, $id) 
 
      {
-       
-        $babysitter=Babysitter::with('reservations')->find($id);
         
-        if($babysitter) {
-            $reservations= $babysitter->reservations;
-            return view('profile.indexBaby',compact('babysitter', 'reservations'));
+        $babysitter=Babysitter::with('reservations','user')->find($id);
+
+        // if (auth()->user()->babysitter->id !== $babysitter->id) {
+        //     abort(403); 
+        // }
+        // // -----------------------
+        // if($babysitter){
+        //     $reservations= $babysitter->reservations;
+        
+        // if($babysitter->status == 'accepted') {
+        //     return view('profile.indexBaby',compact('babysitter', 'reservations'));
+        // }elseif($babysitter->status == 'pending'){
+        //     $message = 'Your profile is pending confirmation.';
+        //     return view('profile.indexBaby',compact('babysitter', 'message'));
+
+        // }else{
+        //         $message = 'Your profile is rejected you can please contact HappyVally@gmail.com.';
+        //         return view('profile.indexBaby',compact('babysitter', 'message'));
+        //     }
+        // }else{
+        //    return  abort(404);
+
+        //     }
+
+        if (!$babysitter) {
+            return redirect()->back();
         }
-        else{
-         return  abort(404);
+        
+        if (auth()->user()->babysitter && auth()->user()->babysitter->id !== $babysitter->id) {
+            return redirect()->back();
         }
+        
+        $reservations = $babysitter->reservations;
+        
+        if ($babysitter->status == 'accepted') {
+            return view('profile.indexBaby', compact('babysitter', 'reservations'));
+        } elseif ($babysitter->status == 'pending') {
+            $message = 'Your profile is pending confirmation.';
+            return view('profile.indexBaby', compact('babysitter', 'message'));
+        } else {
+            $message = 'Your profile is rejected you can please contact HappyVally@gmail.com.';
+            return view('profile.indexBaby', compact('babysitter', 'message'));
+        }
+        
         
      }
 
@@ -65,15 +100,31 @@ class ProfileController extends Controller
      {
        
         
-        $preschool=Preschool::with('reservations')->find($id);
-        if($preschool){
-           
-            $reservationspre= $preschool->reservations;
+        $preschool=Preschool::with('reservations','user')->find($id);
+
+        
+        if (!$preschool) {
+            return redirect()->back();
+        }
+        
+        if (auth()->user()->preschool && auth()->user()->preschool->id !== $preschool->id) {
+            return redirect()->back();
+        }
+        $reservationspre= $preschool->reservations;
+        //  ----------------------------------------------
+     
+
+        if($preschool->status == 'accepted') {
             return view('profile.index',compact('preschool', 'reservationspre'));
-        }
-        else{
-         return  abort(404);
-        }
+        }elseif($preschool->status == 'pending'){
+            $message = 'Your profile is pending confirmation.';
+            return view('profile.index',compact('preschool', 'message'));
+
+        }else{
+                $message = 'Your profile is rejected you can please contact HappyVally@gmail.com.';
+                return view('profile.index',compact('preschool', 'message'));
+            }
+        
         
      }
 
@@ -110,20 +161,21 @@ class ProfileController extends Controller
             $preschool->img = $img;
             $preschool->save();
 
-            $preschoolimg = New Schoolimg();
-
-           foreach( $request->file('images') as $image){
-            $imageName = $image->getClientOriginalName();
-            $image->move( public_path('image'), $imageName);
-
-            $newImage = Schoolimg::create([
-                'image'=>$imageName,
-                'preschool_id'=>$preschool->id,
-            ]);
-            $allImages [] = $imageName;
-        }
-        $preschoolimg->save();
+        
+            foreach($request->file('images') as $image) {
+                $imageName = $image->getClientOriginalName();
+                $image->move(public_path('image'), $imageName);
+                
+                $newImage = new Schoolimg();
+                $newImage->image = $imageName;
+                $newImage->preschool_id = $preschool->id;
+                $newImage->save();
+                
+                $allImages[] = $imageName;
+                $newImage->save();
+            }
         // dd(public_path('image'));
+
 
         
     
@@ -139,6 +191,9 @@ class ProfileController extends Controller
 
     public function  editBabysitter ($id){
         $babysitter = Babysitter::findorfail($id);
+        if (auth()->user()->babysitter && auth()->user()->babysitter->id !== $babysitter->id) {
+            abort(403); 
+        }
        return view('profile.updateProfile',compact('babysitter')) ;
 
 
@@ -170,6 +225,9 @@ class ProfileController extends Controller
 
     public function  editPreschool ($id){
         $preschool = Preschool::findorfail($id);
+        if (auth()->user()->preschool->id !== $preschool->id) {
+            abort(403); 
+        }
        return view('profile.updateProfile',compact('preschool')) ;
 
 

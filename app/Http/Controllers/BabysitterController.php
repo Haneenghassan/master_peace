@@ -69,8 +69,11 @@ class BabysitterController extends Controller
     public function edit($id)
     {
       
-        $data = Babysitter::where('id',$id)->get();
-        return view('admin.babysitter.edit',['data'=>$data]);
+        $Babysitter = Babysitter::where('id',$id)->get();
+        return view('admin.babysitter.index',['Babysitter'=>$Babysitter]);
+        // $reservation = Reservation::where('id',$id)->get();
+        // return view('profile.indexbaby',['reservation'=>$reservation]);
+       
     }
 
     /**
@@ -87,11 +90,12 @@ class BabysitterController extends Controller
 
 
 
-        $preschools=Babysitter::find($id);
+        $babysitters=Babysitter::find($id);
 
-        $preschools->status=$request->select;
-        $preschools->save();
-        return redirect()->route('admin.babysitters.index');
+        $babysitters->status=$request->select;
+        $babysitters->save();
+        return redirect()->back();
+      
     }
 
     /**
@@ -100,8 +104,21 @@ class BabysitterController extends Controller
      * @param  \App\Models\Babysitter  $babysitter
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Babysitter $babysitter)
+    public function destroy($id)
     {
-        //
+        // Babysitter::findorfail($id)->delete();
+        // return view('admin.preschool.index');
+        // return redirect()->back();
+
+        $babysitter = Babysitter::find($id);
+
+       
+        if ($babysitter) {
+            $babysitter->delete();
+            return redirect()->back();
+        }
+        
+        return redirect()->back();
     }
-}
+    }
+

@@ -27,6 +27,7 @@
                             required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
+             
         </div>
 
         <!-- Confirm Password -->
@@ -41,15 +42,7 @@
         </div>
           
 
-        {{-- <div class="mt-4">
-            <label for="profil_photo"> Profile Image</label>
-            <input type="file" id="profil_photo" name="profil_photo">
-          </div> --}}
-          {{-- <div class="mt-4">
-            <label for="profil_photo" class="block font-medium text-sm text-gray-700">{{ __('profil_photo') }}</label>
-            <input id="profil_photo" type="file" class="form-input rounded-md shadow-sm mt-1 block w-full"
-                   name="profil_photo" value="{{ old('profil_photo') }}" required autofocus>
-          </div> --}}
+        
         <!-- Role -->
         <div class="mt-4">
             <x-input-label for="Role As" :value="__('Role As')"/>

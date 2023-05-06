@@ -3,11 +3,21 @@
 @section('preschool')
 
 
-    <div class="text-center " style="margin-top: -5%;">  
+    {{-- <div class="text-center " style="margin-top: -5%;">  
         <img src="/photos/s__1_-removebg-preview.png" class="rounded pt-n5" alt="imghappyvally">
+    </div> --}}
+    <div class="p-5 text-center " style="background-image: url(/photos/preee.jpg);background-size: 100% 131%;">
+      <div  style="display: flex;justify-content: center;">
+      <h1 style="font-size: 5rem" class="text-wrap text-center"><span style="color: #F48257">P</span> <span style="color:#0D9BA0;margin-left:-5%">r</span> <span style="color:#004AAD;margin-left:-5%">e</span> <span style="color: #E8C7A3;margin-left:-4%">s</span> <span style="color: #00BFEB;margin-left:-4%">c</span><span style="color: #00BFEB;">h</span><span style="color:#0D9BA0;">o</span><span style="color: #00BFEB;">o</span><span style="color:#0D9BA0;">l</span><span style="color: #FE3937">s</span> 
+      </div>
+        <form action="{{ route('preschoolpage.search') }}" method="post" >
+        @csrf
+        <input type="search" name="search" class="search" placeholder="Search..." >
+        <button type="submit" style="background:none;border:none"><i class="fa-solid fa-magnifying-glass search-icon text-white"></i></button>
+    </form>
     </div>
 
-<div class="container d-flex " style="margin-top: -10%;" > 
+<div class="container d-flex " style="margin-top:2%;" > 
     <div class="row col-3 justify-content-start" >
 <div class="card  ms-5" style="background-image: url(/photos/swash_blue_full.jpg);">
   <div class="card-body">
@@ -28,37 +38,6 @@
 
 
 <div class="row offset-2">
-         {{-- @foreach ($preschools as $preschool)
-      <div class=" col-6">
-        <img src="/photos/kiddyplant.jpg" class="card-img-top rounded" alt="preschools">
-        <div class="card-body">
-          <h3 class="card-title text-center mt-2">{{$preschool['name']}}</h3>
-          <ul class="list-unstyled d-flex justify-content-center mt-1">
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star fa-sm text-warning"></i>
-            </li>
-            <li>
-              <i class="fas fa-star-half-alt fa-sm text-warning"></i>
-            </li>
-          </ul>
-          <div class="text-center" style="margin-top: -8%;">
-            <p  style="font-size: 24px;">
-                <a class="buttonyellow "  href=""  >Take A Tour</a>
-            </p>
-        </div>
-        </div>
-      </div>
-      @endforeach --}}
-
       @foreach ($preschools as $preschool)
       <div class="cards col-6">      
           <div class="card" style="width: 18rem;">

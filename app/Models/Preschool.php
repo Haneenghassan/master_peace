@@ -20,6 +20,11 @@ class Preschool extends Model
         'user_id'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
     public function schoolimgs()
     {
         return $this->hasMany(Schoolimg::class,'preschool_id','id');
@@ -33,5 +38,10 @@ class Preschool extends Model
     public function reviews()
 {
     return $this->hasMany(Review::class,'preschool_id','id');
+}
+
+public function contacts()
+{
+    return $this->hasMany(Contact::class,'preschool_id','id');
 }
 }

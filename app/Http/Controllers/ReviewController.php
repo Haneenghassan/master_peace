@@ -29,8 +29,7 @@ class ReviewController extends Controller
         $review->user_id = auth()->user()->id;
         $review->comment = $request->comment;
         $review->save();
-        // $preschool=new Preschool;
-        // dd($preschool->reviews);
+      
     
     return redirect()->back();
     }

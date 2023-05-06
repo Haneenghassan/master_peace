@@ -3,7 +3,7 @@
 @section('title','Profileuser')
 @section('Profileuser')
 
-      
+@if(!$reservations->isEmpty())
         <section id="explorecourses">
           <div class="title">
             <h2><span style="color: #F48257;">My </span>Reservation</h2>
@@ -54,6 +54,20 @@
                                                   <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Child Age:</span>
                                                   <span class="bg-light-blue">{{$reservation->child_age}}</span>
                                               </div>
+                                              
+                                              @if(null !==$reservation->babysitter)
+                                              <div class="mb-3">
+                                                <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Babysitter Name</span>
+                                                <span class="bg-light-blue">{{$reservation->babysitter->first_name}} {{$reservation->babysitter->last_name}}</span>
+                                            </div>
+                                            @endif
+                                            
+                                            @if(null !==$reservation->preschool)
+                                            <div class="mb-3">
+                                              <span class="mr-2 d-block d-sm-inline-block mb-2 mb-sm-0">Preschool Name</span>
+                                              <span class="bg-light-blue">{{$reservation->preschool->first_name}} {{$reservation->preschool->last_name}}</span>
+                                          </div>
+                                          @endif
                                           
                                       </li>
                                     </ul>
@@ -83,6 +97,25 @@
                     @endforeach
                   </div>
           </section>
+          @else
+          <section id="explorecourses">
+              <div class="title">
+                <h2><span style="color: #F48257;">My </span>Reservation</h2>
+              </div>
+              <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-white mb-5">
+                          <div class="alert alert-warning" role="alert">
+                            There is no <a  class="alert-link">Reservation</a> Yet.
+                          </div>
+         
+                        </div>
+                    </div>
+                </div>
+              </div>
+          </section> 
+          @endif
           
         
     

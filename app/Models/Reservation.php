@@ -27,6 +27,11 @@ class Reservation extends Model
     public function babysitter() {
         return $this->belongsTo(Babysitter::class);
     }
+
+    public function preschool() {
+        return $this->belongsTo(Preschool::class);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

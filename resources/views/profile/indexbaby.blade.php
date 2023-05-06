@@ -3,7 +3,24 @@
 @section('Profileshow')
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
+@if($babysitter->status == 'pending')
+<div class="alert alert-warning mt-5 py-5 pl-5 text-center" role="alert">
+  <h4 class="alert-heading">Well done!</h4>
+  <p>{{ $message }}</p>
+  <hr>
+  {{-- <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p> --}}
+</div>
 
+@elseif($babysitter->status == 'rejected')
+<div class="alert alert-danger mt-5 py-5  text-center" role="alert">
+  <h4 class="alert-heading"></h4>
+  <p>{{ $message }}</p>
+  <hr>
+</div>
+  
+   
+  
+@else
 <section>
     <div class="contain">
         <div class="box">
@@ -48,7 +65,7 @@
           </ul>
           <ul>
             <h3>Contact</h3>
-            <li> {{auth()->user()->email}}</li>
+            <li> {{$babysitter->user->email}}</li>
           </ul>
           {{-- <ul>
             <p  style="font-size: 30px;font-weight: 600;">
@@ -65,7 +82,7 @@
 
       
       @if(auth()->user()->is_admin == '3')
-      @if(isset($reservation))
+      @if(!$reservations->isEmpty())
       <section id="explorecourses">
         <div class="title">
           <h2><span style="color: #F48257;">My </span>Reservation</h2>
@@ -167,7 +184,7 @@
                   @endforeach
                 </div>
         </section>
-        @elseif(!isset($reservation))
+        @else
         <section id="explorecourses">
             <div class="title">
               <h2><span style="color: #F48257;">My </span>Reservation</h2>
@@ -190,11 +207,12 @@
 @endif
 
 {{-- Review Section --}}
-        <section id="explorecourses">
-        <section class="content-item" id="comments">
-          <div class="container">   
-            <div class="row">
-                  <div class="col-sm-8">   
+<section id="explorecourses">
+  <section class="content-item" id="comments">
+    <div class="container">   
+      <div class="row">
+        <div class="col-sm-8"> 
+                    @if(auth()->user()->is_admin =='0' )  
                       <form method="POST" action="{{ route('reviews.store' ,$babysitter->id) }}">
 
                         @csrf
@@ -211,7 +229,6 @@
                   
                               </div>  	
                           </fieldset>
-                          {{-- <button type="submit" class="btn btn-normal btn-block  pull-left" style="background:#F48257;">Submit</button> --}}
                           <p  style="font-size: 25px;font-weight: 600;">
                             <button class="buttonyellow" type="submit" style="border: none">
                               Comment</button>
@@ -219,7 +236,7 @@
                           
 
                       </form>
-                      
+                      @endif
                       
                       <!-- COMMENT  - START -->
                       @foreach($babysitter->reviews as $review)
@@ -248,6 +265,7 @@
           </div>
       </section>
         </section>
+        @endif
         
         @endsection
      

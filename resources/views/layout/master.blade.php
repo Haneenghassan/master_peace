@@ -33,7 +33,7 @@
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
           
-            <a class="navbar-brand pt-2" href="#">
+            <a class="navbar-brand pt-2" href="/landing">
                 <img src="/photos/logo-removebg-preview.png" alt="Bootstrap" width="120" height="70" id="logo">
             </a>
           
@@ -49,7 +49,7 @@
                     <a class="nav-link" aria-current="page" href="/landing">Home</a>
                 </li>
 
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="/HappyVally" role="button" data-bs-toggle="dropdown"
                   aria-expanded="false">
                   Preschools
@@ -61,17 +61,24 @@
                         </ul>
                 </a>
                         
-                    </li>
+                    </li> --}}
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/preschoolpage">Preschools</a>
+                  </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" aria-current="page" href="#">About</a>
+                      <a class="nav-link" aria-current="page" href="/babysitterpage">Babysitters</a>
+                  </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/about">About</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#">Contact</a>
+                      <a class="nav-link" href="/contacts">Contact</a>
                   </li>
                   </ul>
                   @if (auth()->check())
-                  <ul class="nav navbar-nav navbar-right">
+                  <ul class="nav navbar-nav ">
                     <li class="nav-item">
                         @if(auth()->user()->is_admin == '0')
                       <a class="nav-link" href="{{route('profileuser.show',auth()->user()->id)}}"><i class="fa-solid fa-user"></i>Profile</a></li>
@@ -121,7 +128,8 @@
     @yield('preschool')
     @yield('babysitter')
     @yield('reservationForm')
-    
+    @yield('about')
+    @yield('contact')
     
 
 
@@ -139,11 +147,10 @@
               <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
                 <!-- Content -->
                 <h6 class="text-uppercase fw-bold mb-4">
-                  <i class="fas fa-gem me-3"></i>Company name
+                  <i class="fas fa-gem me-3"></i>Happy Vally
                 </h6>
-                <p>
-                  Here you can use rows and columns to organize your footer content. Lorem ipsum
-                  dolor sit amet, consectetur adipisicing elit.
+                <p class="text-black">
+                  The Happy Valley experience revolves around the comfort and security you feel in choosing the best that can be provided for your child and the pride you feel in choosing the best for your child. The possibility of accessing all the options available to your child in an easy and fast way, without the need to make a great effort.
                 </p>
               </div>
               <!-- Grid column -->
@@ -154,16 +161,16 @@
                 <h6 class="text-uppercase fw-bold mb-4">
                   Products
                 </h6>
-                <p>
+                <p class="text-black">
                   <a href="#!" class="text-reset">Angular</a>
                 </p>
-                <p>
+                <p class="text-black">
                   <a href="#!" class="text-reset">React</a>
                 </p>
-                <p>
+                <p class="text-black">
                   <a href="#!" class="text-reset">Vue</a>
                 </p>
-                <p>
+                <p class="text-black">
                   <a href="#!" class="text-reset">Laravel</a>
                 </p>
               </div>
@@ -175,16 +182,16 @@
                 <h6 class="text-uppercase fw-bold mb-4">
                   Useful links
                 </h6>
-                <p>
-                  <a href="#!" class="text-reset">Pricing</a>
+                <p class="text-black">
+                  <a href="#!" class="text-reset ">Pricing</a>
                 </p>
-                <p>
+                <p class="text-black">
                   <a href="#!" class="text-reset">Settings</a>
                 </p>
-                <p>
+                <p class="text-black">
                   <a href="#!" class="text-reset">Orders</a>
                 </p>
-                <p>
+                <p class="text-black">
                   <a href="#!" class="text-reset">Help</a>
                 </p>
               </div>
@@ -194,13 +201,13 @@
               <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
                 <!-- Links -->
                 <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-                <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
-                <p>
-                  <i class="fas fa-envelope me-3"></i>
+                <p class="text-black"><i class="fas fa-home me-3"></i> Aqaba,Jordan </p>
+                <p class="text-black">
+                  <i class="fas fa-envelope me-3 text-black"></i>
                   info@example.com
                 </p>
-                <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-                <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+                <p class="text-black"><i class="fas fa-phone me-3 text-black"></i>+ 962 770707725</p>
+                <p class="text-black"><i class="fas fa-print me-3 text-black"></i> + 03 2035566</p>
               </div>
               <!-- Grid column -->
             </div>
@@ -217,8 +224,8 @@
           <img src="../../photos/linkedin (1).png" class="img-fluid" alt="...">
         </div>
         <div style="margin-top: 1%;">
-          © 2021 Copyright:
-          <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+          © 2023 Copyright:
+          <a class="text-reset fw-bold" href="https://mdbootstrap.com/">HappyVally.com</a>
         </div>
         </div>
         <!-- Copyright -->

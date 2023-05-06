@@ -30,15 +30,24 @@ class ProfileuserController extends Controller
     {
 
         $user = User::with('reservations')->find($id);
-        if($user){
-        $reservations = $user->reservations;
-        // dd($reservations);
-        return view('profileuser.index',compact('reservations','user'));
-        }  else{
-            return  abort(404);
-           }
+        
+         
+        if (!$user) {
+            return redirect()->back();
+        }
+        
+        if (auth()->user() && auth()->user()->id !== $user->id) {
+           return redirect()->back();
+        }
+        
+     
 
-        // return view('reservationForm');
+        $reservations = $user->reservations;
+
+        return view('profileuser.index',compact('reservations','user'));
+        
+
+       
 
     }
        

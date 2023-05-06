@@ -17,6 +17,13 @@
         <!-- fs:fontsize && text-center:to make text in center page -->
         <h1 class=" fs-1 text-center header ">A HEARTFELT DEDICATION TO <br>  NURTURING INTELLIGENCE.</h1>
     </div>
+    {{-- <div class=" register" >
+    <form action="{{route('search.store')}}" method="post">
+      @csrf
+      <input type="text" name="search" class="search" placeholder="Search...">
+      <i class="fa-solid fa-magnifying-glass search-icon"></i>
+  </form>
+    </div> --}}
    @if(!auth()->check())
     <button type="button" class="btn register" ><a id="register" href="{{route('register')}}">
       Register</a></button>
@@ -67,7 +74,7 @@
                 <a  class="hyberlinks" href="/babysitterpage">
                 <img src="/photos/babysitter.png" class="card-img-top  mt-1 photobabysitter" height="260" width="250" alt="babysittercard">
                 <div class="card-body">   
-                  <h5 class="card-text" style="font-size: 2.5rem;text-align: center;">Baby Sitter</h5>
+                  <h5 class="card-text" style="font-size: 2.5rem;text-align: center;">Baby Sitters</h5>
                 </div>
               </div>
             </a>
@@ -129,47 +136,6 @@
 
 <section style="background-image: url(/photos/Swash_Green_Top.png); "  class="testimonials">
   
-      {{-- <div class="row text-center"  style="margin:3% 3%;" >
-      <div class="col-md-4 mb-5 mb-md-0">
-        <div class="d-flex justify-content-center mb-4">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
-            class="rounded-circle shadow-1-strong" width="150" height="150" />
-        </div>
-        <h5 class="mb-3">Maria Smantha</h5>
- 
-        <p class="px-xl-3">
-          <i class="fas fa-quote-left pe-2"></i>Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic
-          tenetur.
-        </p>
-      </div>
-      <div class="col-md-4 mb-5 mb-md-0">
-        <div class="d-flex justify-content-center mb-4">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(2).webp"
-            class="rounded-circle shadow-1-strong" width="150" height="150" />
-        </div>
-        <h5 class="mb-3">Lisa Cudrow</h5>
-       
-        <p class="px-xl-3">
-          <i class="fas fa-quote-left pe-2"></i>Ut enim ad minima veniam, quis nostrum
-          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid commodi.
-        </p>
-      
-      </div>
-      <div class="col-md-4 mb-0">
-        <div class="d-flex justify-content-center mb-4">
-          <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(9).webp"
-            class="rounded-circle shadow-1-strong" width="150" height="150" />
-        </div>
-        <h5 class="mb-3">John Smith</h5>
-
-        <p class="px-xl-3">
-          <i class="fas fa-quote-left pe-2"></i>At vero eos et accusamus et iusto odio
-          dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.
-        </p>
-       
-      </div>
-    </div> --}}
     <br>
       <div class="heading text-center">
           <h2>What's
@@ -196,8 +162,6 @@
                           <div class="carousel-item  text-center @if($loop->first) active @endif">
                             <img src="https://i.ibb.co/8x9xK4H/team.jpg" alt="" class="center-block team">
                             <h3>{{$review->user->first_name}}</h3>
-                      
-                            {{-- <h4>Front End Developer</h4> --}}
                             <div style="padding-left: 20% ; padding-right:20%">
                             <p class="text-break text-wrap" >{{$review->comment}}</p>
                             </div>

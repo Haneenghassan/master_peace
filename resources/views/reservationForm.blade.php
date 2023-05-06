@@ -2,7 +2,7 @@
 @section('title','reservationForm')
 @section('reservationForm')
 
-@if( isset($babysitter)){
+@if( isset($babysitter))
 <div class="container" style="margin-top: 5%;background-image: url(photos/31NnfrsEplL._AC_.jpg);">
   <form action="{{route('reservations.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -30,16 +30,16 @@
             </div>
          
             
-            <div class="col-sm-3 form-group mb-5">
+            <div class="col-sm-6 form-group mb-5">
                 <label for="child_firstname">Child First Name</label>
                 <input type="text" class="form-control" name="child_firstname" id="name-cf" placeholder="Enter your Child first name." required>
             </div>
-            <div class="col-sm-3 form-group mb-5">
+            <div class="col-sm-6 form-group mb-5">
                 <label for="child_lastname">Child Last Name</label>
                 <input type="text" class="form-control" name="child_lastname" id="name-cl" placeholder="Enter your Child Last name." required>
             </div>
 
-            <div class="col-sm-3 form-group mb-5">
+            <div class="col-sm-6 form-group mb-5">
                 <label for="	child_age">Child Age</label>
                 <input type="text" class="form-control" name="child_age" id="DOB" placeholder="Enter your Child Last name." required>
             </div>
@@ -76,8 +76,8 @@
           </div>
         </form>
       </div>
-    }
-    @elseif(isset($preschool)){
+    
+    @elseif(isset($preschool))
       <div class="container" style="margin-top: 5%;background-image: url(photos/31NnfrsEplL._AC_.jpg);">
         <form action="{{route('Preschoolreservations.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
@@ -125,7 +125,7 @@
                     <div class="col-sm-6 form-group mb-5">
                       <label for="first_name">preschool name</label>
                       <input type="text" name="first_name" class="form-control" id="pass" placeholder="{{$preschool->first_name}} {{$preschool->last_name}}" disabled>
-                      <input type="hidden" name="id" class="form-control" value="{{ $preschool->id }}">
+                      <input type="hidden" name="id" class="form-control" value="{{$preschool->id }}">
       
                     </div>
       
@@ -141,12 +141,14 @@
               </form>
             </div>
 
-    }
+    
 
     @endif
 
 
-    
+    <div> 
+      <img src="/photos/kc_footer-illustration.png" class="img-fluid " alt="registration">
+    </div>
 
     <script src="bootstrap-5.2.2-dist/js/bootstrap.bundle.min.js"></script>
     <script src="bootstrap-5.2.2-dist/js/all.min.js"></script>    
